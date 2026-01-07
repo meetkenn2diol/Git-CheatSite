@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="git-vector.svg" />
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- IMPLEMENTING media = "..." FOR STYLE SWITCHING
+    
+    <link
+      id="cssViewAll"
+      rel="stylesheet"
+      href="style-arrangeViewAll.css"
+      media="all"
+    />
+    <link
+      id="cssViewExtras"
+      rel="stylesheet"
+      href="style-arrangeViewExtras.css"
+      media="none"
+    />
+    <link
+      id="cssViewMainContent"
+      rel="stylesheet"
+      href="style-arrangeViewMainContent.css"
+      media="none"
+    />
+    <link
+      id="cssViewWorkFlow"
+      rel="stylesheet"
+      href="style-arrangeViewWorkFlow.css"
+      media="none"
+    /> -->
+
+    <link rel="stylesheet" href="style-site-navigation.css" />
+    <link rel="stylesheet" href="style-site-header.css" />
+    <link rel="stylesheet" href="style-site-side-left.css" />
+    <link rel="stylesheet" href="style-site-side-right.css" />
+    <link rel="stylesheet" href="style-site-main.css" />
+    <link rel="stylesheet" href="style-site-footer.css" />
+
+    <title>Git CheatSite</title>
+  </head>
+  <body>
+    <header id="header">
+      <img src="git-vector.svg" />
+      <span>Git CheatSite</span>
+    </header>
+
+    <nav id="nav">
+      <ul>
+        <li id="btn-viewAll">View All</li>
+        <li id="btn-viewWorkFlow">Workflow Guide</li>
+        <li id="btn-viewMainContent">Main Content</li>
+        <li id="btn-viewExtras">Extras</li>
+      </ul>
+    </nav>
+
+    <aside id="side-left">
+      <header>
+        <h2>Git Workflow Guide</h2>
+        <p>
+          Step-by-step guide to initialize a Git repository, manage files, and
+          push changes to a remote repository.
+        </p>
+      </header>
+
+      <ol>
+        <li>
+          <a href="https://git-scm.com/install/" target="_blank"
+            >Download and install Git</a
+          >
+        </li>
+        <li>Create a work folder on your PC for Git</li>
+        <li>
+          Initialize a Git repository in your folder by running this command in
+          the terminal: <code>git init</code>
+        </li>
+        <li>
+          Create a remote repository on GitHub, GitLab, or use an existing one
+        </li>
+        <li>
+          (Optional) Create a branch if no default branch is configured:
+          <code>git branch my-new-branch</code>
+        </li>
+        <li>
+          (Optional) Switch to the created branch:
+          <code>git checkout my-new-branch</code>
+        </li>
+        <li>
+          Connect your local folder to the remote repository:
+          <code
+            >git remote add origin
+            "https://github.com/username/reponame.git"</code
+          >
+        </li>
+        <li>Confirm the connection: <code>git remote -v</code></li>
+        <li>Add and modify files locally</li>
+        <li>Add those files or changes to Git: <code>git add --all</code></li>
+        <li>Commit the changes: <code>git commit -m "commit message"</code></li>
+        <li>
+          (Optional) Add tags where necessary:
+          <code>git tag &lt;tagname&gt;</code>
+        </li>
+        <li>
+          Confirm your changes:
+          <ul>
+            <li><code>git log</code></li>
+            <li><code>git log --oneline</code></li>
+            <li><code>git rev-parse &lt;branch-name&gt;</code></li>
+            <li><code>git show --name-only</code></li>
+            <li><code>git log --oneline --decorate --graph --all</code></li>
+            <li><code>git log --oneline --graph</code></li>
+          </ul>
+        </li>
+        <li>Switch branch to the main branch (usually: <strong>master</strong> or <strong>main</strong> - but can be changed based on the default settings). Therefore change the <strong>main</strong> to <strong>master</strong> or to the default branch: <code>git branch -M main</code></li>
+        <li>Push changes to remote: <code>git push -u origin main</code></li>
+        <li>
+          (Optional) Push changes to a different branch:
+          <code>git push -u origin &lt;branch-name&gt;</code>
+        </li>
+      </ol>
+    </aside>
+
+    <main id="main-content">
+      <aside class="git-info" style="grid-column: 1 / span 12">
+        <p><strong>QUICK NOTE: </strong></p>
+        <p>
+          All files are <strong>untracked</strong> until <code>git add</code> is
+          performed on them, after which they become
+          <strong>tracked files</strong>.
+        </p>
+
+        <p>
+          The <strong>length of each Git operation</strong> visually represents
+          the areas it affects.
+        </p>
+
+        <p>
+          Arrows indicate the <strong>direction</strong> in which each Git
+          operation flows.
+        </p>
+
+        <p>
+          Operations <strong>without arrows</strong> indicate
+          <strong>no directional flow</strong>
+        </p>
+
+        <p class="warning">Use lanscape mode for best view experience</p>
+      </aside>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">INITIALIZE</header>
+
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Init</h3>
+            <code>git init</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+        <div class="git-operation-container" style="grid-column: 1 / span 12">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git clone</h3>
+            <code
+              >git clone https://github.com/username/repository-name.git</code
+            >
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+      </section>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">ADDITION OF CHANGES</header>
+
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+
+        <!-- Git Add -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Add</h3>
+            <code>git add &lt;file&gt;</code>
+            <code>git add</code>
+            <code>git add --all</code>
+            <code>git add -A</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Commit -->
+        <div class="git-operation-container" style="grid-column: 4 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Commit</h3>
+            <code>git commit -m "Your commit message"</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Commit (Secondary) -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Commit (Secondary)</h3>
+            <code>git commit -a -m "Message"</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Push -->
+        <div class="git-operation-container" style="grid-column: 7 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Push</h3>
+            <code>git push -u origin</code>
+            <code>git push</code>
+            <code>git push --all origin</code>
+            <code>git push --force origin &lt;branch name&gt;</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+      </section>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">UPDATE</header>
+
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+        <!-- Git Merge -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Merge</h3>
+            <code>git merge &lt;branch-to-merge-into-current&gt;</code>
+            <code
+              >git merge &lt;branch-to-merge-into-current&gt; -m "Merged
+              emergency fix into this branch"</code
+            >
+            <code>git merge --no-ff &lt;branch-name&gt;</code>
+            <code>git merge --squash &lt;feature-branch-name&gt;</code>
+            <code>git merge origin/&lt;branch&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Merge Abort -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Merge Abort</h3>
+            <code>git merge --abort</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Pull -->
+        <div class="git-operation-container" style="grid-column: 7 / span 12">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Pull</h3>
+            <code>git pull</code>
+            <code>git pull origin/&lt;branch&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Fetch -->
+        <div class="git-operation-container" style="grid-column: 1 / span 12">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Fetch</h3>
+            <code>git fetch</code>
+            <code>git fetch origin</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+      </section>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">DIFFERENCES</header>
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+        <!-- Git Diff -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff</h3>
+            <code>git diff</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Diff Staged -->
+        <div class="git-operation-container" style="grid-column: 4 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff Staged</h3>
+            <code>git diff --staged</code>
+            <code>git diff --staged &lt;commit&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Diff Cached -->
+        <div class="git-operation-container" style="grid-column: 4 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff Cached</h3>
+            <code>git diff --cached</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Diff Commit or Branch -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff Commit or Branch</h3>
+            <code>git diff &lt;commit&gt;</code>
+            <code>git diff &lt;branch&gt;</code>
+            <code>git diff main</code>
+            <code>git diff feature/login</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Diff HEAD -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff HEAD</h3>
+            <code>git diff HEAD</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Diff Between Commits -->
+        <div class="git-operation-container" style="grid-column: 7 / span 3">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Diff Between Commits</h3>
+            <code>git diff c1 c2</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+      </section>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">REVERT CHANGES</header>
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+        <!-- Git Checkout -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Checkout</h3>
+            <code>git checkout &lt;branch&gt;</code>
+            <code>git checkout -b &lt;new-branch&gt;</code>
+            <code>git checkout &lt;commit-hash&gt;</code>
+            <code>git checkout &lt;commit&gt; --&lt;file&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Checkout File -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Checkout (File)</h3>
+            <code>git checkout --&lt;file&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Switch -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Switch</h3>
+            <code>git switch &lt;branch&gt;</code>
+            <code>git switch -c &lt;new-branch&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Restore -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Restore</h3>
+            <code>git rm --cached &lt;file&gt;</code>
+            <code>git restore &lt;file&gt;</code>
+            <code>git restore --staged &lt;file&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Restore (Source) -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Restore (Source)</h3>
+            <code>git restore &lt;file&gt;</code>
+            <code>git restore --source=&lt;commit&gt; &lt;file&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Reset -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Reset</h3>
+            <code>git reset</code>
+            <code>git reset &lt;file&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Reset Soft -->
+        <div class="git-operation-container" style="grid-column: 4 / span 6">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Reset (Soft)</h3>
+            <code>git reset --soft HEAD~1</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Reset Mixed / Hard -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Reset (Mixed / Hard)</h3>
+            <code>git reset --mixed HEAD~1</code>
+            <code>git reset --hard HEAD~1</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Revert -->
+        <div class="git-operation-container" style="grid-column: 1 / span 9">
+          <img src="icon-arrow-left.svg" />
+          <div class="git-operation">
+            <h3>Git Revert</h3>
+            <code>git revert &lt;commit-hash&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+
+        <!-- Git Push Revert -->
+        <div class="git-operation-container" style="grid-column: 7 / span 12">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Push Revert</h3>
+            <code>git push origin &lt;revert-branch&gt;</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+      </section>
+
+      <section class="mains-section">
+        <header style="grid-column: 1 / span 12">DELETE</header>
+        <div class="image-row-container" style="grid-column: 1 / span 12">
+          <div class="image-row-and-label">
+            <img src="img-working-directory.svg" />
+            <h5>Files</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-staging-area.svg" />
+            <h5>Index</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-local-repo.svg" />
+            <h5>Head</h5>
+          </div>
+          <div class="image-row-and-label">
+            <img src="img-remote-repo.svg" />
+            <h5>Remote Repo</h5>
+          </div>
+        </div>
+        <!-- Git Remove -->
+        <div class="git-operation-container" style="grid-column: 1 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Remove</h3>
+            <code>git remove &lt;file&gt;</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Commit Removal -->
+        <div class="git-operation-container" style="grid-column: 4 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Commit Removal</h3>
+            <code>git commit -m "removal message"</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Push Removal -->
+        <div class="git-operation-container" style="grid-column: 7 / span 6">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Push Removal</h3>
+            <code>git push origin &lt;branch&gt;</code>
+          </div>
+          <img src="icon-arrow-right.svg" />
+        </div>
+
+        <!-- Git Delete Branch -->
+        <div class="git-operation-container" style="grid-column: 7 / span 3">
+          <img src="icon-circle.svg" />
+          <div class="git-operation">
+            <h3>Git Delete Branch</h3>
+            <code>git branch -d &lt;branch-name&gt;</code>
+          </div>
+          <img src="icon-circle.svg" />
+        </div>
+      </section>
+    </main>
+
+    <aside id="side-right">
+      <!-- Section 1: Git Stash -->
+      <section>
+        <h1>More Git Operations</h1>
+        <header>
+          <h2>Git Stash</h2>
+          <p>Save uncommitted changes and return later.</p>
+        </header>
+        <ul>
+          <li>Stash your changes: <code>git stash</code></li>
+          <li>
+            Stash with a message: <code>git stash push -m "stash message"</code>
+          </li>
+          <li>List all stashes: <code>git stash list</code></li>
+          <li>
+            Create a branch from a stash:
+            <code>git stash branch &lt;branchname&gt; 'stash@{0}'</code>
+          </li>
+          <li>Show stash details: <code>git stash show</code></li>
+          <li>
+            Apply a specific stash (stash remains in stack):
+            <code>git stash apply 'stash@{n}'</code>
+          </li>
+          <li>
+            Apply latest stash and remove it from stack:
+            <code>git stash pop</code>
+          </li>
+          <li>
+            Delete a specific stash: <code>git stash drop 'stash@{0}'</code>
+          </li>
+          <li>Clear all stashes: <code>git stash clear</code></li>
+          <li>
+            Create a new branch and apply a stash: <code>git stash branch</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 2: Git Tag -->
+      <section>
+        <header>
+          <h2>Git Tag</h2>
+          <p>Label or bookmark a specific commit.</p>
+        </header>
+        <ul>
+          <li>
+            Create a lightweight tag: <code>git tag &lt;tagname&gt;</code>
+          </li>
+          <li>
+            Create an annotated tag:
+            <code>git tag -a &lt;tagname&gt; -m "message"</code>
+          </li>
+          <li>
+            Tag a specific commit:
+            <code>git tag &lt;tagname&gt; &lt;commit-hash&gt;</code>
+          </li>
+          <li>List tags: <code>git tag</code></li>
+          <li>Show tag details: <code>git show &lt;tagname&gt;</code></li>
+          <li>
+            Push tag to remote: <code>git push origin &lt;tagname&gt;</code>
+          </li>
+          <li>Push all tags: <code>git push --tags</code></li>
+          <li>Delete a local tag: <code>git tag -d &lt;tagname&gt;</code></li>
+          <li>
+            Delete a remote tag: <code>git push origin --delete tag v1.0</code>
+          </li>
+          <li>
+            Update or replace a local tag:
+            <code>git tag -f &lt;tagname&gt; &lt;new-commit-hash&gt;</code>
+          </li>
+          <li>
+            Update or replace a remote tag:
+            <code>git push --force origin &lt;tagname&gt;</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 3: Git Branch / Other Useful Commands -->
+      <section>
+        <header>
+          <h2>Git Branch & Other Useful Commands</h2>
+          <p>Manage branches, rename, and inspect branches.</p>
+        </header>
+        <ul>
+          <li>Delete a local branch: <code>git branch -d branch-name</code></li>
+          <li>
+            Delete a remote branch:
+            <code>git push origin --delete branch-name</code>
+          </li>
+          <li>Rename a branch: <code>git branch -m old-name new-name</code></li>
+          <li>Show remote branches: <code>git branch -r</code></li>
+          <li>
+            Show all branches (local + remote): <code>git branch -a</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Amend -->
+      <section>
+        <header>
+          <h2>Amend</h2>
+          <p>
+            Modify the most recent commit – fix typos, add/remove files, or
+            change the commit message.
+          </p>
+        </header>
+        <ul>
+          <li>
+            Fix last commit message:
+            <code>git commit --amend -m "New message"</code>
+          </li>
+          <li>
+            Add file to last commit:
+            <code>git add &lt;file&gt;</code> then <code>git commit --amend</code>
+          </li>
+          <li>
+            Add file to last commit <strong>without changing the commit message:</strong>
+            <code>git add &lt;file&gt;</code> then <code>git commit --amend</code>
+          </li>
+          <li>
+            Remove file from last commit:
+            <code>git reset HEAD^ -- &lt;file&gt;</code> then <code>git commit --amend</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Rebase -->
+      <section>
+        <header>
+          <h2>Rebase</h2>
+          <p>Combine a sequence of commits onto a new base commit.</p>
+        </header>
+        <ul>
+          <li>
+            Reapply feature branch changes on main:
+            <code>git checkout feature-branch </code> then <code> git rebase main</code>
+          </li>
+          <li>Interactive rebase: <code>git rebase -i</code></li>
+          <li>
+            Edit, reorder, squash, fix commits:
+            <code>git rebase -i HEAD~3</code>
+          </li>
+          <li>
+            Continue rebase after conflicts: <code>git rebase --continue</code>
+          </li>
+          <li>Abort rebase: <code>git rebase --abort</code></li>
+          <li>Skip a commit during rebase: <code>git rebase --skip</code></li>
+        </ul>
+      </section>
+
+      <!-- Section 6: Revert -->
+      <section>
+        <header>
+          <h2>Revert</h2>
+          <p>Create a new commit that reverses changes.</p>
+        </header>
+        <ul>
+          <li>Revert latest commit: <code>git revert HEAD</code></li>
+          <li>
+            Revert specific commit: <code>git revert &lt;commit-hash&gt;</code>
+          </li>
+          <li>Revert commit further back: <code>git revert HEAD~2</code></li>
+          <li>Skip commit message editor: <code>git revert --no-edit</code></li>
+          <li>
+            Show commit history to find commits to revert:
+            <code>git log --oneline</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 7: Recovery / Restore -->
+      <section>
+        <header>
+          <h2>Recovery / Restore</h2>
+          <p>Recover deleted branches, lost commits, or files.</p>
+        </header>
+        <ul>
+          <li>
+            Recover lost branch:
+            <code
+              >git reflog </code> then <code> git checkout -b branch-name
+              &lt;commit-hash&gt;</code
+            >
+          </li>
+          <li>
+            Restore a file from latest commit:
+            <code>git restore filename.txt</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 8: Reset ⚠️ -->
+      <section>
+        <header>
+          <h2>
+            Reset <span title="Warning" aria-label="Warning">⚠️⚠️⚠️</span>
+          </h2>
+          <p>Move your current branch (HEAD) to a different commit.</p>
+        </header>
+        <ul>
+          <li>
+            Move HEAD but keep changes staged:
+            <code>git reset --soft &lt;commit&gt;</code>
+          </li>
+          <li>
+            Move HEAD, unstage changes:
+            <code>git reset --mixed &lt;commit&gt;</code>
+          </li>
+          <li>
+            Move HEAD and discard all changes:
+            <code>git reset --hard &lt;commit&gt;</code>
+          </li>
+          <li>Unstage a file: <code>git reset &lt;file&gt;</code></li>
+          <li>Show commit history: <code>git log --oneline</code></li>
+        </ul>
+      </section>
+
+      <!-- Section 9: Reflog ⚠️ -->
+      <section>
+        <header>
+          <h2>
+            Reflog <span title="Warning" aria-label="Warning">⚠️⚠️⚠️</span>
+          </h2>
+          <p>
+            Recover lost commits, undo resets, and see history of branch & HEAD.
+          </p>
+        </header>
+        <ul>
+          <li>View reflog: <code>git reflog</code></li>
+          <li>
+            Reset to a specific reflog state:
+            <code>git reflog </code> then <code> git reset --hard HEAD@{2}</code>
+          </li>
+          <li>
+            Expire old reflog entries and garbage collect:
+            <code
+              >git reflog expire --expire=30.days refs/heads/main </code> then <code> git gc
+              --prune=now</code
+            >
+          </li>
+        </ul>
+      </section>
+    </aside>
+
+    <footer id="footer">
+      <h4>Extra Info:</h4>
+      <p>
+        Some git hosting platforms <strong>></strong> GitHub, GitLab, BitBucket
+      </p>
+    </footer>
+    <script src="script.js" />
+  </body>
+</html>

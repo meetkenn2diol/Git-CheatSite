@@ -1,0 +1,34 @@
+#main-content,
+#side-left,
+#footer {
+    display: none;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "nav"
+        "side-right";
+    grid-template-rows: auto auto 1fr;
+}
+
+#side-right {
+    justify-self: center;
+    align-self: start;
+    max-width: 100%;
+}
+
+
+@media (min-width: 600px) {
+    #side-right {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 992px) {
+    #side-right {
+        max-width: 75%;
+    }
+}

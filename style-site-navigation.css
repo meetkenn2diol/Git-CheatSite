@@ -1,0 +1,105 @@
+:root {
+    --header-height: 86px;
+}
+
+/* =========================================================================
+   SITE NAVIGATION
+========================================================================== */
+body>nav {
+    grid-area: nav;
+
+    padding: 0.4rem .8rem;
+
+    background: linear-gradient(180deg, #ffffff, #eef2ff);
+    border-bottom: 1px solid #c7d2fe;
+
+    font-family: system-ui, -apple-system, Segoe UI, monospace;
+
+    box-shadow:
+        0 4px 14px rgba(99, 102, 241, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+    position: sticky;
+    top: var(--header-height);
+    z-index: 999;
+
+
+    white-space: nowrap;
+
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+body>nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+body>nav li {
+    position: relative;
+
+    font-size: 0.96rem;
+    font-weight: 600;
+
+    color: #4338ca;
+    cursor: pointer;
+
+    padding: 0.1rem 0;
+
+    transition: color 0.2s ease;
+}
+
+body>nav li:hover {
+    color: #1e1b4b;
+}
+
+body>nav li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+
+    width: 0;
+    height: 2px;
+
+    background: linear-gradient(90deg, #6366f1, #22d3ee);
+    border-radius: 2px;
+
+    transition: width 0.25s ease;
+}
+
+body>nav li:hover::after {
+    width: 100%;
+}
+
+body>nav li.active {
+    color: #1e1b4b;
+}
+
+body>nav li.active::after {
+    width: 100%; 
+    background: linear-gradient(90deg, #6366f1, #22d3ee); 
+}
+
+@media (max-width: 600px) {
+
+    /* =========================================================================
+   SITE NAVIGATION FOR SMALL SCREEN
+========================================================================== */
+    body>nav {
+        padding: 0.7rem 1.2rem;
+    }
+
+    body>nav ul {
+        gap: 1.1rem;
+    }
+
+    body>nav li {
+        font-size: 0.75rem;
+    }
+}

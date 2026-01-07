@@ -1,0 +1,169 @@
+/* =========================================================================
+   SITE SIDE - RIGHT
+========================================================================== */
+/* ===============================
+   RIGHT SIDEBAR CONTAINER
+================================ */
+#side-right {
+  grid-area: side-right;
+
+  padding: 1.6rem 1.8rem;
+  margin: .24rem;
+
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+  border-left: 1px solid #c7d2fe;
+  border-radius: 18px;
+
+  font-family: system-ui, -apple-system, Segoe UI, monospace;
+  color: #1f2937;
+
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  box-shadow:
+    0 10px 28px rgba(99, 102, 241, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ===============================
+   SECTION BLOCK
+================================ */
+#side-right section {
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.4rem;
+
+  border-bottom: 1px dashed #c7d2fe;
+}
+
+#side-right section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ===============================
+   SECTION HEADER
+================================ */
+#side-right section > header {
+  margin-bottom: 0.75rem;
+}
+
+#side-right h2 {
+  margin: 0;
+
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+
+  color: #4338ca;
+}
+
+#side-right h2 span {
+  margin-left: 0.4rem;
+  font-size: 1rem;
+}
+
+/* Subtitle */
+#side-right section > header p {
+  margin: 0.25rem 0 0;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  color: #475569;
+}
+
+/* ===============================
+   LISTS
+================================ */
+#side-right ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+#side-right li {
+  position: relative;
+}
+
+/* ===============================
+   INLINE CODE
+================================ */
+#side-right code {
+  padding: 0.2rem 0.45rem;
+
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.85em;
+
+  background: #0f172a;
+  color: #a5f3fc;
+
+  border-radius: 6px;
+  border: 1px solid #1e293b;
+
+  white-space: nowrap;
+}
+
+/* ===============================
+   WARNING SECTIONS (RESET / REFLOG)
+================================ */
+#side-right section h2 span[aria-label="Warning"] {
+  color: #dc2626;
+  font-weight: 900;
+  
+  }
+
+/* Subtle warning accent */
+#side-right section:has(h2 span[aria-label="Warning"]) {
+  background: linear-gradient(180deg, #fff7ed, #ffedd5);
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* ===============================
+   SCROLLBAR (SUBTLE)
+================================ */
+#side-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+#side-right::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 10px;
+}
+
+#side-right::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =========================================================================
+   SITE SIDE - RIGHT FOR SMALL SCREEN
+========================================================================== */
+@media (max-width: 600px) {
+  #side-right {
+    padding: 1.2rem 1.3rem;
+    border-radius: 14px;
+  }
+
+  #side-right h2 {
+    font-size: 1rem;
+  }
+
+  #side-right section > header p {
+    font-size: 0.82rem;
+  }
+
+  #side-right ul {
+    font-size: 0.82rem;
+  }
+}

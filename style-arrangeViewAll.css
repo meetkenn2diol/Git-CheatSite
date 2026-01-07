@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "nav"
+        "side-left"
+        "main-content"
+        "side-right"
+        "footer";
+    grid-template-rows: auto auto auto auto 1fr auto;
+}
+
+@media (min-width: 600px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "side-left main-content"
+            "side-left main-content"
+            "side-left side-right"
+            "side-left footer";
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr 1fr;
+        grid-template-rows: auto auto auto 1fr auto;
+        grid-template-areas:
+            "header header header"
+            "nav nav nav"
+            "side-left main-content side-right"
+            "side-left main-content side-right"
+            "side-left footer side-right";
+    }
+}

@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, monospace;
+    font-size: 1rem;
+
+    margin: 0;
+    padding: 0;
+
+    background: linear-gradient(135deg,
+            #c6dcff 0%,
+            /* muted slate */
+            #b0f3ff 45%,
+            /* soft charcoal */
+            #e1e9ff 100%
+            /* calm deep blue */
+        );
+
+    color: #e5e7eb;
+}
+
+/* -------------------- View All -------------------- */
+body.arrangeViewAll {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "nav"
+        "side-left"
+        "main-content"
+        "side-right"
+        "footer";
+}
+
+@media (min-width: 600px) {
+    body.arrangeViewAll {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "side-left main-content"
+            "side-left main-content"
+            "side-left side-right"
+            "side-left footer";
+    }
+}
+
+@media (min-width: 992px) {
+    body.arrangeViewAll {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr 1fr;
+        grid-template-rows: auto auto auto 1fr auto;
+        grid-template-areas:
+            "header header header"
+            "nav nav nav"
+            "side-left main-content side-right"
+            "side-left main-content side-right"
+            "side-left footer side-right";
+    }
+}
+
+/* -------------------- View Extras -------------------- */
+body.arrangeViewExtras {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "header"
+        "nav"
+        "side-right";
+}
+
+body.arrangeViewExtras #main-content,
+body.arrangeViewExtras #side-left,
+body.arrangeViewExtras #footer {
+    display: none;
+}
+
+body.arrangeViewExtras #side-right {
+    justify-self: center;
+    align-self: start;
+    max-width: 100%;
+}
+
+@media (min-width: 600px) {
+    body.arrangeViewExtras #side-right {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 992px) {
+    body.arrangeViewExtras #side-right {
+        max-width: 75%;
+    }
+}
+
+/* -------------------- View Main Content -------------------- */
+body.arrangeViewMainContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "nav"
+        "main-content"
+        "footer";
+}
+
+body.arrangeViewMainContent #side-left,
+body.arrangeViewMainContent #side-right {
+    display: none;
+}
+
+body.arrangeViewMainContent #main-content,
+body.arrangeViewMainContent #footer {
+    justify-self: center;
+    align-self: start;
+    max-width: 100%;
+}
+
+@media (min-width: 600px) {
+
+    body.arrangeViewMainContent #main-content,
+    body.arrangeViewMainContent #footer {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 992px) {
+
+    body.arrangeViewMainContent #main-content,
+    body.arrangeViewMainContent #footer {
+        max-width: 75%;
+    }
+}
+
+/* -------------------- View Workflow -------------------- */
+body.arrangeViewWorkFlow {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "header"
+        "nav"
+        "side-left";
+}
+
+body.arrangeViewWorkFlow #main-content,
+body.arrangeViewWorkFlow #side-right,
+body.arrangeViewWorkFlow #footer {
+    display: none;
+}
+
+body.arrangeViewWorkFlow #side-left {
+    justify-self: center;
+    align-self: start;
+    max-width: 100%;
+}
+
+@media (min-width: 600px) {
+    body.arrangeViewWorkFlow #side-left {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 992px) {
+    body.arrangeViewWorkFlow #side-left {
+        max-width: 75%;
+    }
+}
