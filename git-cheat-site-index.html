@@ -148,6 +148,14 @@
         </p>
 
         <p class="warning">Use lanscape mode for best view experience</p>
+
+        <p><strong>The Recommended "Safe" Workflow to avoid "Merge Hell"</strong></p>
+        <ul>
+          <li>git fetch origin (Get the updates)</li>
+          <li>git status (See how many commits you are "behind")</li>
+          <li>git diff main origin/main (See exactly what lines of code changed)</li>
+          <li>git merge origin/main (Only now do you combine the code)</li>
+        </ul>
       </aside>
 
       <section class="mains-section">
