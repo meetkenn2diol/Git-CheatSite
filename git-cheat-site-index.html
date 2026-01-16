@@ -81,14 +81,6 @@
           Create a remote repository on GitHub, GitLab, or use an existing one
         </li>
         <li>
-          (Optional) Create a branch if no default branch is configured:
-          <code>git branch my-new-branch</code>
-        </li>
-        <li>
-          (Optional) Switch to the created branch:
-          <code>git checkout my-new-branch</code>
-        </li>
-        <li>
           Connect your local folder to the remote repository:
           <code
             >git remote add origin
@@ -116,6 +108,14 @@
         </li>
         <li>Switch branch to the main branch (usually: <strong>master</strong> or <strong>main</strong> - but can be changed based on the default settings). Therefore change the <strong>main</strong> to <strong>master</strong> or to the default branch: <code>git branch -M main</code></li>
         <li>Push changes to remote: <code>git push -u origin main</code></li>
+        <li>
+          (Optional) Create a new branch for more changes:
+          <code>git branch my-new-branch</code>
+        </li>
+        <li>
+          (Optional) Switch to the created branch:
+          <code>git checkout my-new-branch</code>
+        </li>
         <li>
           (Optional) Push changes to a different branch:
           <code>git push -u origin &lt;branch-name&gt;</code>
