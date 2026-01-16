@@ -323,6 +323,7 @@
           <div class="git-operation">
             <h3>Git Pull</h3>
             <code>git pull</code>
+            <code>git pull origin &lt;branch-name&gt; --allow-unrelated-histories</code>
             <code>git pull origin/&lt;branch&gt;</code>
           </div>
           <img src="icon-circle.svg" />
@@ -830,6 +831,10 @@
           </li>
           <li>Unstage a file: <code>git reset &lt;file&gt;</code></li>
           <li>Show commit history: <code>git log --oneline</code></li>
+          <li>
+            If you don’t care about the local history and want GitHub’s version:
+            <code>git fetch origin</code>  OR  <code>git fetch origin branch-name</code>  then  <code>git reset --hard origin/branch-name</code>  then <code>git push origin branch-name</code>     
+          </li>
         </ul>
       </section>
 
